@@ -21,8 +21,8 @@ public class ScrapedDataService {
         return scrapedDataRepo.findAll();
     }
 
-    public ScrapedData getWebsiteData(String websiteName) {
-        return scrapedDataRepo.findByWebsiteName(websiteName);
+    public List<ScrapedData> getWebsitesDataByName(String websiteName) {
+        return scrapedDataRepo.findByWebsiteNameContaining(websiteName);
     }
 
     public void deleteAllData() {

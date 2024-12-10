@@ -24,14 +24,6 @@ public class ScrapedDateController {
         this.scrapedDataRepo = scrapedDataRepo;
     }
 
-
-    @GetMapping("/get/{websiteName}")
-    public ResponseEntity<ScrapedData> getScrapedData(@PathVariable("websiteName") String websiteName) {
-        ScrapedData scrapedData = scrapedDataService.getWebsiteData(websiteName);
-        return new ResponseEntity<>(scrapedData, HttpStatus.OK);
-    }
-
-
     @GetMapping("/all")
     public ResponseEntity<List<ScrapedData>> getAllScrapedData() {
         List<ScrapedData> data = scrapedDataService.getAllData();
@@ -40,8 +32,14 @@ public class ScrapedDateController {
 
     @PostMapping("/save")
     public ResponseEntity<String> saveData(@RequestBody List<ScrapedData> dataList) {
-        scrapedDataRepo.saveAll(dataList);  // Save all records in the list
+        scrapedDataRepo.saveAll(dataList);
         return ResponseEntity.ok("Data saved successfully");
+    }
+
+    @GetMapping("/{websiteName}")
+    public ResponseEntity<List<ScrapedData>> getDataByWebsiteName(@PathVariable("websiteName") String websiteName) {
+        List<ScrapedData> data = scrapedDataService.getWebsitesDataByName(websiteName);
+        return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
@@ -49,11 +47,6 @@ public class ScrapedDateController {
         scrapedDataService.deleteAllData();
         return ResponseEntity.ok("data deleted");
     }
-
-
-
-//    @GetMapping("/trigger-scraper")
-//    public String triggerScraper() {}
 
 
 
