@@ -6,14 +6,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
+import io.github.cdimascio.dotenv.Dotenv;
 import java.util.Arrays;
 
 @SpringBootApplication
 public class CouncilDataHubApplication {
 
 	public static void main(String[] args) {
-
+		Dotenv dotenv = Dotenv.load();
+		dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
 
 		SpringApplication.run(CouncilDataHubApplication.class, args);
 	}
