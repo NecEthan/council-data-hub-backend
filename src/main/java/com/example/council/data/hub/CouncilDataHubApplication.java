@@ -22,7 +22,8 @@ public class CouncilDataHubApplication {
 
 		corsConfiguration.setAllowedOrigins(Arrays.asList(
 				"https://council-data-hub.netlify.app",
-				"http://localhost:4200"
+				"http://localhost:4200",
+				"https://test32123.netlify.app"
 		));
 
 		corsConfiguration.setAllowedHeaders(Arrays.asList(
