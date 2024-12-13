@@ -14,13 +14,8 @@ public class ScrapedData{
     private String websiteName;
     private String name;
     private String address;
-    @JsonFormat(pattern = "MM/dd/yy")
-    private LocalDate startDate;
-    @JsonFormat(pattern = "MM/dd/yy")
-    private LocalDate endDate;
-    @Column(nullable = false, updatable = false)
-    @JsonFormat(pattern = "MM/dd/yy")
-    private LocalDate scrapedAt;
+    @JsonFormat(pattern = "dd/MM/yy")
+    private LocalDate date;
 
     public ScrapedData() {
     }
@@ -57,28 +52,12 @@ public class ScrapedData{
         this.address = address;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalDate getScrapedAt() {
-        return scrapedAt;
-    }
-
-    public void setScrapedAt(LocalDate scrapedAt) {
-        this.scrapedAt = scrapedAt;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
@@ -88,9 +67,7 @@ public class ScrapedData{
                 ", websiteName='" + websiteName + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", scrapedAt=" + scrapedAt +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
