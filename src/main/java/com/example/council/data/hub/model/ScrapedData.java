@@ -16,7 +16,7 @@ public class ScrapedData{
     private String websiteName;
     private String name;
     private String address;
-    @Column(nullable = false, updatable = false)
+    @JsonFormat(pattern = "MM/dd/yy")
     private LocalDate date;
 
     public ScrapedData() {
