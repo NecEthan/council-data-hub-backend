@@ -1,6 +1,8 @@
 package com.example.council.data.hub.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 @Entity
@@ -15,6 +17,7 @@ public class ScrapedData{
     private String name;
     private String address;
     @JsonFormat(pattern = "dd/MM/yy")
+    @DateTimeFormat(pattern = "dd/MM/yy")
     private LocalDate date;
 
     public ScrapedData() {
