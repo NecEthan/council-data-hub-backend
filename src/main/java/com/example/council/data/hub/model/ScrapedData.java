@@ -1,8 +1,8 @@
 package com.example.council.data.hub.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table( name = "scraped_data" )
@@ -15,6 +15,10 @@ public class ScrapedData{
     private String websiteName;
     private String name;
     private String address;
+    @Column(nullable = false)
+    @JsonFormat(pattern = "dd/MM/yy")
+    private LocalDate date;
+
 
     public ScrapedData() {
     }
@@ -51,6 +55,14 @@ public class ScrapedData{
         this.address = address;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "ScrapedData{" +
@@ -58,6 +70,7 @@ public class ScrapedData{
                 ", websiteName='" + websiteName + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
