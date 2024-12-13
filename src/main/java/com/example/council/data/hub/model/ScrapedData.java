@@ -15,8 +15,6 @@ public class ScrapedData{
     private String websiteName;
     private String name;
     private String address;
-    @Column(nullable = false)
-    private LocalDateTime date;
 
     public ScrapedData() {
     }
@@ -53,14 +51,6 @@ public class ScrapedData{
         this.address = address;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
     @Override
     public String toString() {
         return "ScrapedData{" +
@@ -68,7 +58,6 @@ public class ScrapedData{
                 ", websiteName='" + websiteName + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", date='" + date + '\'' +
                 '}';
     }
 }
