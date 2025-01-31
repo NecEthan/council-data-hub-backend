@@ -29,4 +29,9 @@ public class ScrapedDataService {
         scrapedDataRepo.deleteAll();
     }
 
+    public void deleteDataByWebsite(String websiteName) {
+        List<ScrapedData> websiteData = scrapedDataRepo.findByWebsiteNameContaining(websiteName);
+        scrapedDataRepo.deleteAll(websiteData);
+    }
+
 }

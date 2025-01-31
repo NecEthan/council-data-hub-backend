@@ -48,7 +48,10 @@ public class ScrapedDateController {
         return ResponseEntity.ok("data deleted");
     }
 
-
-
+    @DeleteMapping("/delete/{websiteName}")
+    public ResponseEntity<?> deleteDataByWebsiteName(@PathVariable("websiteName") String websiteName) {
+        scrapedDataService.deleteDataByWebsite(websiteName);
+        return ResponseEntity.ok("data deleted");
+    }
 
 }
