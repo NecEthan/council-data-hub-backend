@@ -53,5 +53,9 @@ public class ScrapedDataService {
         scrapedDataRepo.deleteAll(websiteData);
     }
 
-
+    @Transactional
+    public void deleteDataByWebsiteAndMonth(String websiteName, int year, int month) {
+        List<ScrapedData> websiteData = scrapedDataRepo.findByWebsiteNameAndMonth(websiteName, year, month);
+        scrapedDataRepo.deleteAll(websiteData);
+    }
 }

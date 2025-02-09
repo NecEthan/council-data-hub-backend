@@ -66,12 +66,13 @@ public class ScrapedDateController {
         return ResponseEntity.ok("data deleted");
     }
 
-    @DeleteMapping("/delete/{websiteName}/{date}")
-    public ResponseEntity<?> deleteDataByWebsiteAndDate(
+    @DeleteMapping("/delete/{websiteName}/{year}/{month}")
+    public ResponseEntity<?> deleteDataByWebsiteAndMonth(
             @PathVariable("websiteName") String websiteName,
-            @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
+            @PathVariable("year") int year,
+            @PathVariable("month") int month
     ) {
-        scrapedDataService.deleteDataByWebsiteAndDate(websiteName, date);
+        scrapedDataService.deleteDataByWebsiteAndMonth(websiteName, year, month);
         return ResponseEntity.ok("Data successfully deleted");
     }
 
