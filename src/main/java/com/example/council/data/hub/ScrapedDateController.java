@@ -3,10 +3,12 @@ import com.example.council.data.hub.model.ScrapedData;
 import com.example.council.data.hub.repo.ScrapedDataRepo;
 import com.example.council.data.hub.service.ScrapedDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,6 @@ public class ScrapedDateController {
     private final ScrapedDataRepo scrapedDataRepo;
 
 
-    // Constructor Injection
     @Autowired
     public ScrapedDateController(ScrapedDataService scrapedDataService, ScrapedDataRepo scrapedDataRepo) {
         this.scrapedDataService = scrapedDataService;
@@ -29,6 +30,17 @@ public class ScrapedDateController {
         List<ScrapedData> data = scrapedDataService.getAllData();
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
+
+
+    @GetMapping("/get/{websiteName}/{date}")
+    public ResponseEntity<List<ScrapedData>> getDataByWebsiteAndDate(
+            @PathVariable("websiteName") String websiteName,
+            @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
+    ) {
+        List<ScrapedData> data = scrapedDataService.getDataByWebsiteAndDate(websiteName, date);
+        return new ResponseEntity<>(data, HttpStatus.OK);
+    }
+
 
     @PostMapping("/save")
     public ResponseEntity<String> saveData(@RequestBody List<ScrapedData> dataList) {
@@ -53,5 +65,16 @@ public class ScrapedDateController {
         scrapedDataService.deleteDataByWebsite(websiteName);
         return ResponseEntity.ok("data deleted");
     }
+
+    @DeleteMapping("/delete/{websiteName}/{date}")
+    public ResponseEntity<?> deleteDataByWebsiteAndDate(
+            @PathVariable("websiteName") String websiteName,
+            @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
+    ) {
+        scrapedDataService.deleteDataByWebsiteAndDate(websiteName, date);
+        return ResponseEntity.ok("Data successfully deleted");
+    }
+
+
 
 }
