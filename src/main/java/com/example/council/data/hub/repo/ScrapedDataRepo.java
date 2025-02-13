@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ScrapedDataRepo extends JpaRepository<ScrapedData, Long> {
 
-    List<ScrapedData> findByWebsiteNameContaining(String websiteName);
+    List<ScrapedData> findByWebsiteNameContainingOrderByDateAsc(String websiteName);
 
 
     @Query("SELECT s FROM ScrapedData s WHERE s.websiteName = :websiteName AND s.date = :date")

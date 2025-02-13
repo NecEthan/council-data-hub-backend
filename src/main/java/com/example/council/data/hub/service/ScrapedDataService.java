@@ -27,7 +27,7 @@ public class ScrapedDataService {
     }
 
     public List<ScrapedData> getWebsitesDataByName(String websiteName) {
-        return scrapedDataRepo.findByWebsiteNameContaining(websiteName);
+        return scrapedDataRepo.findByWebsiteNameContainingOrderByDateAsc(websiteName);
     }
 
     @Transactional
@@ -38,7 +38,7 @@ public class ScrapedDataService {
 
     @Transactional
     public void deleteDataByWebsite(String websiteName) {
-        List<ScrapedData> websiteData = scrapedDataRepo.findByWebsiteNameContaining(websiteName);
+        List<ScrapedData> websiteData = scrapedDataRepo.findByWebsiteNameContainingOrderByDateAsc(websiteName);
         scrapedDataRepo.deleteAll(websiteData);
     }
 
